@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+#if HARMONY_1_2
 using Harmony;
+#elif HARMONY_2_0
+using HarmonyLib;
+#endif
 using Verse;
 using Pawn_JobTracker = Verse.AI.Pawn_JobTracker;
 using System.Reflection;
@@ -14,7 +18,11 @@ namespace TacticsMode
     {
         public Mod(ModContentPack content) : base(content)
         {
+#if HARMONY_1_2
             var harmony = HarmonyInstance.Create("likeafox.rimworld.tacticsmode");
+#elif HARMONY_2_0
+            var harmony = new Harmony("likeafox.rimworld.tacticsmode");
+#endif
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
         }
     }
