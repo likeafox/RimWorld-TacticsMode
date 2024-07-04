@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 #if HARMONY_1_2
 using Harmony;
-#elif HARMONY_2_0
+#elif HARMONY_2
 using HarmonyLib;
 #endif
 using Verse;
@@ -20,7 +20,7 @@ namespace TacticsMode
         {
 #if HARMONY_1_2
             var harmony = HarmonyInstance.Create("likeafox.rimworld.tacticsmode");
-#elif HARMONY_2_0
+#elif HARMONY_2
             var harmony = new Harmony("likeafox.rimworld.tacticsmode");
 #endif
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
@@ -167,9 +167,13 @@ namespace TacticsMode
             "TendPatient",
             "TradeWithPawn",
             "Train",
+#if !POST_RW_1_4
             "TriggerFirefoamPopper",
+#endif
             "Uninstall",
+#if !POST_RW_1_5
             "UseArtifact",
+#endif
             "UseNeurotrainer",
             "VisitSickPawn",
             "Wear"
